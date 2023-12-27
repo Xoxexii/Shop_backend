@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "JdlwQ3rBppBLZO85jP1OBdkyWdRKXJHYQqoRdBA0Hrw=",
+  "Source": "shopbackend",
+  "BasePath": "_content/shopbackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "shopbackend\\wwwroot",
+      "Source": "shopbackend",
+      "ContentRoot": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\",
+      "BasePath": "_content/shopbackend",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

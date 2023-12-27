@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\cat\\itim\\cat_itim_66190804-L.jpg",
+      "PackagePath": "staticwebassets\\Image\\cat\\itim\\cat_itim_66190804-L.jpg"
+    },
+    {
+      "Id": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\fish\\johny\\fish_johny_7080F4D7-8C30-40D1-A472-67048B20EAD7.jpg",
+      "PackagePath": "staticwebassets\\Image\\fish\\johny\\fish_johny_7080F4D7-8C30-40D1-A472-67048B20EAD7.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.shopbackend.props",
+      "PackagePath": "build\\shopbackend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.shopbackend.props",
+      "PackagePath": "buildMultiTargeting\\shopbackend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.shopbackend.props",
+      "PackagePath": "buildTransitive\\shopbackend.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.shopbackend.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
