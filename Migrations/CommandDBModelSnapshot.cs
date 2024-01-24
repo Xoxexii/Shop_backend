@@ -7,7 +7,7 @@ using shopbackend.Models;
 
 #nullable disable
 
-namespace shop_backend.Migrations
+namespace shopbackend.Migrations
 {
     [DbContext(typeof(CommandDB))]
     partial class CommandDBModelSnapshot : ModelSnapshot
@@ -53,11 +53,27 @@ namespace shop_backend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Describe")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Path")
+                    b.Property<string>("ImPath1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImPath2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImPath3")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImPath4")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

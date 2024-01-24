@@ -1,12 +1,24 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\__slip.jpg",
+      "PackagePath": "staticwebassets\\Image\\__slip.jpg"
+    },
+    {
       "Id": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\cat\\itim\\cat_itim_66190804-L.jpg",
       "PackagePath": "staticwebassets\\Image\\cat\\itim\\cat_itim_66190804-L.jpg"
     },
     {
-      "Id": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\fish\\johny\\fish_johny_7080F4D7-8C30-40D1-A472-67048B20EAD7.jpg",
-      "PackagePath": "staticwebassets\\Image\\fish\\johny\\fish_johny_7080F4D7-8C30-40D1-A472-67048B20EAD7.jpg"
+      "Id": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\cat\\itim\\cat_itim_7080F4D7-8C30-40D1-A472-67048B20EAD7.jpg",
+      "PackagePath": "staticwebassets\\Image\\cat\\itim\\cat_itim_7080F4D7-8C30-40D1-A472-67048B20EAD7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\cat\\itim\\cat_itim_IMG_2660.jpg",
+      "PackagePath": "staticwebassets\\Image\\cat\\itim\\cat_itim_IMG_2660.jpg"
+    },
+    {
+      "Id": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\cat\\itim\\cat_itim_IMG_6387.jpg",
+      "PackagePath": "staticwebassets\\Image\\cat\\itim\\cat_itim_IMG_6387.jpg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.shopbackend.props",

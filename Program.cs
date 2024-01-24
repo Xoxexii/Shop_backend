@@ -1,4 +1,4 @@
-using shopbackend.CouponStore;
+﻿using shopbackend.CouponStore;
 using shopbackend.Models;
 using JWT.Algorithms;
 using JWT.Serializers;
@@ -6,6 +6,16 @@ using JWT;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using shopbackend.GetValueFromDatabase;
+using shopbackend.Api;
+using shopbackend.Api.Service;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +23,29 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+
+}).AddJwtBearer(o  =>
+{
+
+    o.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = false,
+        ValidateIssuerSigningKey = true,
+        
+    };
+});
+builder.Services.AddAuthorization();
 
 
 var myOrigins = "_myOrigins";
@@ -33,7 +66,8 @@ builder.Services.AddDbContext<CommandDB>(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 
-
+builder.Services.Configure<EmailSetting>(builder.Configuration.GetSection("EmailSetting"));
+builder.Services.AddTransient<IEmailService, EmailService>();
 
 
 
@@ -41,7 +75,8 @@ var app = builder.Build();
 
 app.UseCors(myOrigins);
 app.UseStaticFiles();
-
+app.UseAuthentication();
+app.UseAuthorization();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -60,9 +95,7 @@ app.MapGet("/api/getitem", async (CommandDB db) =>
         return Results.Ok(await db.Items.ToListAsync());
     
 
-}
-
-);
+}).RequireAuthorization();
 
 
 
@@ -75,29 +108,39 @@ app.MapPost("/api/login", ([FromBody] Admin admin) =>
     MakeApi.api[0] = admin;
     if (MakeApi.api[0].Pass == getValue.password && MakeApi.api[0].User == getValue.username)
     {
-        var payload = new Dictionary<string, string>
-{
-    { "user", MakeApi.api[0].User },
+       var issuer = builder.Configuration["Jwt:Issuer"];
+        var audience = builder.Configuration["Jwt:Audience"];
+        var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
+        var tokenDiscriptor = new SecurityTokenDescriptor
+        {
+            Subject = new ClaimsIdentity(new[]
+            {
+                new Claim("Id",Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub, admin.User),
+                new Claim(JwtRegisteredClaimNames.Email, admin.User),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
 
-}; IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
-        IJsonSerializer serializer = new JsonNetSerializer();
-        IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
-        IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
-        const string key = "itim"; // not needed if algorithm is asymmetric
-        var token = encoder.Encode(payload, key);
-        Author.tokens = token;
-        var res = new Author();
-        res.Token = token;
+            }),
+            Expires = DateTime.UtcNow.AddMinutes(5),
+            Issuer = issuer,
+            Audience = audience,
+            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key) , SecurityAlgorithms.HmacSha256),
+        };
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var token = tokenHandler.CreateToken(tokenDiscriptor);
+        var jwttoken = tokenHandler.WriteToken(token);
+        var res = tokenHandler.WriteToken(token);
+        
 
 
 
-        MakeApi.api2[0] = res;
+        
 
-        return Results.Ok(MakeApi.api2);
+        return Results.Ok(res);
     }
     else
     {
-        return Results.Ok(MakeApi.api3);
+        return Results.Unauthorized();
     }
 });
 
@@ -112,7 +155,7 @@ app.MapPost("/api/additem", async (ItemFromClient item, CommandDB db) =>
         ItemFromClient.categoryy = item.Category;
         ItemFromClient.name = item.Name;
 
-        ItemToDatabase model = new ItemToDatabase(item.Category, item.Name, item.Price, item.Amount, item.Image);
+        ItemToDatabase model = new ItemToDatabase(item.Category, item.Name, item.Price, item.Amount, item.Describe, item.Image1, item.Image2, item.Image3, item.Image4);
 
         db.Items.Add(model);
         db.SaveChanges();
@@ -127,16 +170,20 @@ app.MapPost("/api/additem", async (ItemFromClient item, CommandDB db) =>
 });
 
 
-app.MapPost("/api/addimage", async (IFormFile file, CommandDB db) =>
+app.MapPost("/api/addimage", async (IFormFileCollection files, CommandDB db) =>
 {
+        foreach(var file in files)
+        {
+            string str = @"C:\Users\chano\source\repos\shopbackend\wwwroot\Image\" + $"{ItemFromClient.categoryy}\\" + ItemFromClient.name;
+            Directory.CreateDirectory(str);
+
+            var filename = $"wwwroot/Image/{ItemFromClient.categoryy}/{ItemFromClient.name}/" + $"{ItemFromClient.categoryy}_{ItemFromClient.name}_" + file.FileName;
+            using var stream = File.OpenWrite(filename);
+
+            await file.CopyToAsync(stream);
+            stream.Close();
+        }
     
-    string str = @"C:\Users\chano\source\repos\shopbackend\wwwroot\Image\" + $"{ItemFromClient.categoryy}\\" + ItemFromClient.name;
-    Directory.CreateDirectory(str);
-    
-    var filename = $"wwwroot/Image/{ItemFromClient.categoryy}/{ItemFromClient.name}/" + $"{ItemFromClient.categoryy}_{ItemFromClient.name}_" + file.FileName;
-    using var stream = File.OpenWrite(filename);
-    await file.CopyToAsync(stream);
-    stream.Close();
 
 
     return Results.Ok(true);
@@ -208,6 +255,43 @@ app.MapDelete("/api/deletecategory/{id}", async (int id, CommandDB db) =>
     await db.SaveChangesAsync();
     return Results.Ok(true);
 
+});
+
+app.MapPost("/api/submitpayment", async (DetailFromCustomer emailFromCustomer,IEmailService emailService) =>
+{
+    try
+    {
+        var message = new MimeMessage();
+        message.From.Add(new MailboxAddress("Chanokchon Kongsumrit", "chanokchonkzr@gmail.com"));
+        message.To.Add(new MailboxAddress($"{emailFromCustomer.Firstname}{emailFromCustomer.Lastname}", $"{emailFromCustomer.Email}"));
+        message.Subject = "คำสั่งซื้อ";
+
+        message.Body = new TextPart("plain")
+        {
+            Text = @"Hey Chandler,
+
+I just wanted to let you know that Monica and I were going to go play some paintball, you in?
+
+-- Joey"
+        };
+
+        using (var client = new SmtpClient())
+        {
+            client.Connect("smtp.gmail.com", 587, false);
+
+            // Note: only needed if the SMTP server requires authentication
+            client.Authenticate("chanokchonkzr@gmail.com", "dnournxvfjhwlmvf");
+
+            client.Send(message);
+            client.Disconnect(true);
+        }
+
+        return Results.Ok();
+    }
+    catch (Exception ex)
+    {
+        throw;
+    }
 });
 
 app.Run();

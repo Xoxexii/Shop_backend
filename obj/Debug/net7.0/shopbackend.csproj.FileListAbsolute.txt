@@ -162,3 +162,9 @@ C:\Users\chano\source\repos\shopbackend\obj\Debug\net7.0\refint\shopbackend.dll
 C:\Users\chano\source\repos\shopbackend\obj\Debug\net7.0\shopbackend.pdb
 C:\Users\chano\source\repos\shopbackend\obj\Debug\net7.0\shopbackend.genruntimeconfig.cache
 C:\Users\chano\source\repos\shopbackend\obj\Debug\net7.0\ref\shopbackend.dll
+C:\Users\chano\source\repos\shopbackend\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
+C:\Users\chano\source\repos\shopbackend\bin\Debug\net7.0\MailKit.dll
+C:\Users\chano\source\repos\shopbackend\bin\Debug\net7.0\MimeKit.dll
+C:\Users\chano\source\repos\shopbackend\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\chano\source\repos\shopbackend\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\chano\source\repos\shopbackend\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

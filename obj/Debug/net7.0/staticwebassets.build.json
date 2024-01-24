@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "JdlwQ3rBppBLZO85jP1OBdkyWdRKXJHYQqoRdBA0Hrw=",
+  "Hash": "sdjV0NZ4iu1BROUA/zgse3+P87uLDnRzu74Uo2RxMIU=",
   "Source": "shopbackend",
   "BasePath": "_content/shopbackend",
   "Mode": "Default",
@@ -15,5 +15,91 @@
       "Pattern": "**"
     }
   ],
-  "Assets": []
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\__slip.jpg",
+      "SourceId": "shopbackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\",
+      "BasePath": "_content/shopbackend",
+      "RelativePath": "Image/__slip.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\__slip.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\cat\\itim\\cat_itim_66190804-L.jpg",
+      "SourceId": "shopbackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\",
+      "BasePath": "_content/shopbackend",
+      "RelativePath": "Image/cat/itim/cat_itim_66190804-L.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\cat\\itim\\cat_itim_66190804-L.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\cat\\itim\\cat_itim_7080F4D7-8C30-40D1-A472-67048B20EAD7.jpg",
+      "SourceId": "shopbackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\",
+      "BasePath": "_content/shopbackend",
+      "RelativePath": "Image/cat/itim/cat_itim_7080F4D7-8C30-40D1-A472-67048B20EAD7.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\cat\\itim\\cat_itim_7080F4D7-8C30-40D1-A472-67048B20EAD7.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\cat\\itim\\cat_itim_IMG_2660.jpg",
+      "SourceId": "shopbackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\",
+      "BasePath": "_content/shopbackend",
+      "RelativePath": "Image/cat/itim/cat_itim_IMG_2660.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\cat\\itim\\cat_itim_IMG_2660.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\Image\\cat\\itim\\cat_itim_IMG_6387.jpg",
+      "SourceId": "shopbackend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\chano\\source\\repos\\shopbackend\\wwwroot\\",
+      "BasePath": "_content/shopbackend",
+      "RelativePath": "Image/cat/itim/cat_itim_IMG_6387.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Image\\cat\\itim\\cat_itim_IMG_6387.jpg"
+    }
+  ]
 }
